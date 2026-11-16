@@ -1,7 +1,7 @@
 export const ROLE_LABELS = {
   DEPORTISTA: 'Deportista',
   OJEADOR_ENTRENADOR: 'Ojeador / Entrenador',
-  MODERADOR: 'Moderador',
+  VERIFICADOR: 'Verificador',
   ADMIN: 'Administrador',
 }
 
