@@ -1,17 +1,28 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { markRead, notifications, unreadCount } from '../stores/notifications'
 import { formatRelative } from '../utils/format'
 
 const open = ref(false)
 const root = ref(null)
+const router = useRouter()
+
+const VIDEO_TYPES = new Set(['VIDEO_APPROVED', 'VIDEO_REJECTED'])
 
 const ICONS = {
   PROFILE_VIEWED: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6',
   REQUEST_CREATED: 'M22 12h-6l-2 3h-4l-2-3H2 M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z',
   REQUEST_ACCEPTED: 'M20 6 9 17l-5-5',
   REQUEST_REJECTED: 'M18 6 6 18M6 6l12 12',
+  VIDEO_APPROVED: 'M20 6 9 17l-5-5',
+  VIDEO_REJECTED: 'M18 6 6 18M6 6l12 12',
+}
+
+function openNotification(item) {
+  markRead(item)
+  open.value = false
+  if (VIDEO_TYPES.has(item.type)) router.push({ name: 'my-videos' })
 }
 
 function onDocumentClick(event) {
@@ -55,7 +66,7 @@ onBeforeUnmount(() => {
       </div>
       <ul v-if="notifications.items.length" class="notif-list">
         <li v-for="item in notifications.items" :key="item.id">
-          <button type="button" :class="['notif-item', { unread: !item.read }]" @click="markRead(item)">
+          <button type="button" :class="['notif-item', { unread: !item.read }]" @click="openNotification(item)">
             <span class="notif-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path :d="ICONS[item.type] ?? ICONS.REQUEST_CREATED" />

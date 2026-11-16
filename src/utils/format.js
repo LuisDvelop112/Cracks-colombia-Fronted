@@ -6,7 +6,7 @@ export const ROLE_LABELS = {
 }
 
 export const STATUS_LABELS = {
-  PENDIENTE: 'Pendiente de revisión',
+  PENDIENTE: 'Pendiente',
   APROBADO: 'Aprobado',
   RECHAZADO: 'Rechazado',
 }

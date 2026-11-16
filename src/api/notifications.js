@@ -1,7 +1,7 @@
 import { request } from './http'
 
 export function listNotifications() {
-  return request('/notifications')
+  return request('/notifications?unreadOnly=false')
 }
 
 export function markNotificationRead(notificationId) {
