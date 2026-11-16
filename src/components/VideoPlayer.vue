@@ -12,6 +12,8 @@ const props = defineProps({
    * are downloaded on demand and played from a blob URL.
    */
   isPublic: { type: Boolean, default: false },
+  /** Text of the button that downloads a private video. */
+  loadLabel: { type: String, default: 'Ver vista previa' },
 })
 
 const blobUrl = ref(null)
@@ -42,7 +44,7 @@ onBeforeUnmount(() => {
     <div v-else>
       <p v-if="error" class="player-note">{{ error }}</p>
       <button type="button" class="btn btn-ghost btn-small" style="color: #fff" :disabled="loading" @click="loadPrivate">
-        {{ loading ? 'Cargando…' : 'Ver vista previa' }}
+        {{ loading ? 'Cargando…' : loadLabel }}
       </button>
     </div>
   </div>

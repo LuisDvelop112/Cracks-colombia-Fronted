@@ -9,14 +9,17 @@ import MyVideosView from './views/MyVideosView.vue'
 import AthleteProfileView from './views/AthleteProfileView.vue'
 import SearchView from './views/SearchView.vue'
 import RequestsView from './views/RequestsView.vue'
+import ModerationQueueView from './views/ModerationQueueView.vue'
 
 const ATHLETE = ['DEPORTISTA']
 const SCOUT = ['OJEADOR_ENTRENADOR']
+const VERIFIER = ['VERIFICADOR']
 
 /** Where each role lands after login or when opening "/". */
 export function homeFor(role) {
   if (role === 'DEPORTISTA') return { name: 'my-profile' }
   if (role === 'OJEADOR_ENTRENADOR') return { name: 'search' }
+  if (role === 'VERIFICADOR') return { name: 'moderation-queue' }
   return { name: 'home' }
 }
 
@@ -39,6 +42,12 @@ const router = createRouter({
     { path: '/perfil/crear', name: 'profile-create', component: ProfileCreateView, meta: { requiresAuth: true, roles: ATHLETE } },
     { path: '/mis-videos', name: 'my-videos', component: MyVideosView, meta: { requiresAuth: true, roles: ATHLETE } },
     { path: '/buscar', name: 'search', component: SearchView, meta: { requiresAuth: true, roles: SCOUT } },
+    {
+      path: '/verificacion',
+      name: 'moderation-queue',
+      component: ModerationQueueView,
+      meta: { requiresAuth: true, roles: VERIFIER },
+    },
     {
       path: '/solicitudes',
       name: 'requests',
