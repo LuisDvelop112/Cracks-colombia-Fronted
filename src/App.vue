@@ -19,9 +19,13 @@ const NAV = {
     { to: { name: 'search' }, label: 'Buscar talentos' },
     { to: { name: 'requests' }, label: 'Solicitudes' },
   ],
+  MODERADOR: [
+    { to: { name: 'moderation' }, label: 'Verificador' },
+  ],
 }
+const INBOX_ROLES = ['DEPORTISTA', 'OJEADOR_ENTRENADOR']
 const links = computed(() => NAV[session.user?.role] ?? [])
-const hasInbox = computed(() => Boolean(NAV[session.user?.role]))
+const hasInbox = computed(() => INBOX_ROLES.includes(session.user?.role))
 
 // The session can end without a navigation (token expiry, a 401 from the API);
 // leave protected pages when that happens.

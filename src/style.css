@@ -227,6 +227,8 @@ fieldset { border: 0; padding: 0; margin: 0; }
 
 /* ---------- videos (HU-03) ---------- */
 .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+.moderation-list { display: grid; gap: 1.25rem; }
+.moderation-list .video-card { max-width: 720px; }
 .video-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
 .video-card-body { padding: 0.9rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
 .video-meta { font-size: 0.85rem; color: var(--muted); }
