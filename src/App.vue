@@ -19,9 +19,8 @@ const NAV = {
     { to: { name: 'search' }, label: 'Buscar talentos' },
     { to: { name: 'requests' }, label: 'Solicitudes' },
   ],
-  MODERADOR: [
-    { to: { name: 'moderation' }, label: 'Verificador' },
-  ],
+  MODERADOR: [{ to: { name: 'moderation-queue' }, label: 'Bandeja de verificación' }],
+  VERIFICADOR: [{ to: { name: 'moderation-queue' }, label: 'Bandeja de verificación' }],
 }
 const INBOX_ROLES = ['DEPORTISTA', 'OJEADOR_ENTRENADOR']
 const links = computed(() => NAV[session.user?.role] ?? [])

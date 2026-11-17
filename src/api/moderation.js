@@ -1,9 +1,7 @@
 import { request } from './http'
 
-const PAGE_SIZE = 20
-
 /** Pending videos, oldest first. `page` starts at 0. */
-export function listModerationQueue({ page = 0, size = PAGE_SIZE } = {}) {
+export function listModerationQueue({ page = 0, size = 20 } = {}) {
   const params = new URLSearchParams({ page: String(page), size: String(size) })
   return request(`/moderation/queue?${params}`)
 }
